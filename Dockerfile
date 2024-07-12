@@ -38,7 +38,7 @@ RUN echo "gem: --no-ri --no-rdoc" > /etc/gemrc \
     sqlite3 \
     locales \
  && locale-gen --purge en_US.UTF-8 \
- && dpkg-reconfigure --frontend noninteractive locales \
+ && printf '158\n3\n' | dpkg-reconfigure locales \
  && bundle install --gemfile=/beef/Gemfile --jobs=`nproc` \
  && rm -rf /usr/local/bundle/cache \
  && chmod -R a+r /usr/local/bundle \
@@ -78,7 +78,7 @@ RUN adduser --home /beef --gecos beef --disabled-password beef \
     nodejs \
     locales \
  && locale-gen --purge en_US.UTF-8 \
- && dpkg-reconfigure --frontend noninteractive locales \
+ && printf '158\n3\n' | dpkg-reconfigure locales \
  && apt-get -y clean \
  && rm -rf /var/lib/apt/lists/*
 
